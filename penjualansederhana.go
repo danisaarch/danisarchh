@@ -25,9 +25,9 @@ func main() {
 	// kondisi diskon, kalau lebih dari 5 dapat 10%, selain itu 2%
 	switch quantity {
 	case 5:
-		hasil_diskon = 0.1
+		hasil_diskon = 0.1 // 10%
 	default:
-		hasil_diskon = 0.2
+		hasil_diskon = 0.2 // 2%
 	}
 
 	// proses
