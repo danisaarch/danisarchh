@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .form-container {
+      max-width: 500px;
+      margin-left: 20px; /* Posisi form di sebelah kiri */
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .form-container h1 {
+      margin-bottom: 50px; /* Jarak lebih besar antara judul dan form */
+    }
+    .form-group {
+      display: flex; /* Menjadikan label dan input sejajar */
+      align-items: center; /* Menjaga label dan input tetap sejajar di tengah secara vertikal */
+      margin-bottom: 20px; /* Jarak antar kelompok form */
+    }
+    .form-group label {
+      flex: 0 0 120px; /* Lebar label tetap */
+      font-weight: bold;
+    }
+    .form-group label .required {
+      color: red;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      flex: 1; /* Input menyesuaikan lebar */
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    textarea {
+      resize: vertical; /* Membatasi perubahan ukuran hanya vertikal */
+      height: 100px; /* Memperbesar tinggi kotak teks Address */
+    }
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px; /* Jarak tambahan antara input terakhir dan tombol */
+    }
+    .btn {
+      flex: 1; /* Tombol diperlebar */
+      margin: 0 5px; /* Jarak antar tombol */
+      padding: 12px; /* Tinggi tombol */
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+    .btn-reset {
+      background-color: red;
+    }
+    .btn-submit {
+      background-color: green;
+    }
+    .error-message {
+      background-color: #eecccc;
+      color: black;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Workshop Registration</h1>
+    <div id="error-message" class="error-message"></div>
+    <form id="registration-form">
+      <div class="form-group">
+        <label for="name">Name <span class="required">*</span></label>
+        <input type="text" id="name" name="name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="age">Age</label>
+        <select id="age" name="age">
+          <option value="" disabled selected>- Select Age -</option>
+          <option value="18-25">18-25</option>
+          <option value="26-35">26-35</option>
+          <option value="36-45">36-45</option>
+          <option value="46+">46+</option>
+        </select>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn btn-reset" id="reset-btn">Reset</button>
+        <button type="submit" class="btn btn-submit">Submit Form</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    const form = document.getElementById('registration-form');
+    const resetBtn = document.getElementById('reset-btn');
+    const errorMessage = document.getElementById('error-message');
+
+    // Reset button functionality
+    resetBtn.addEventListener('click', () => {
+      form.reset();
+      errorMessage.style.display = 'none';
+      errorMessage.innerText = '';
+    });
+
+    // Submit button functionality
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !email) {
+        errorMessage.style.display = 'block';
+        errorMessage.innerText = 'Please fill in your name and email.';
+      } else {
+        errorMessage.style.display = 'none';
+        alert('Form submitted successfully!');
+      }
+    });
+  </script>
+</body>
+</html>
